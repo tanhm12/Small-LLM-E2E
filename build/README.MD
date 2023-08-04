@@ -14,7 +14,7 @@ Inside the `ggml/build` folder, run:
 ```bash
 python3 ../examples/gpt-neox/convert-h5-to-ggml.py ../../../train/models/pythia1b4-chat-oasst-dolly 1
 ```
-2. Quantize model from 16 bit to 8 bit (q5_0)
+2. Quantize model from 16 bit to 6 bit (q5_0)
 ```bash
 ./bin/gpt-neox-quantize ../../../train/models/pythia1b4-chat-oasst-dolly/ggml-model-f16.bin ../../../train/models/pythia1b4-chat-oasst-dolly/ggml-model-q5_0.bin q5_0
 ```
