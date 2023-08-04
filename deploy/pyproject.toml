@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "deploy"
+version = "0.1.0"
+description = ""
+authors = ["Tan Hoang <tan.hm1211@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-dotenv = "^1.0.0"
+fastapi = "^0.100.1"
+transformers = "^4.31.0"
+ctransformers = "^0.2.18"
+uvicorn = {extras = ["standard"], version = "^0.23.2"}
+gunicorn = "^21.2.0"
+loguru = "^0.7.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

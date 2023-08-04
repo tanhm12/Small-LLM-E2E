@@ -1,0 +1,7 @@
+**__pycache__/
+docker/log/
+docker/docker-compose.yml
+log/
+pythia1b4-chat-oasst-dolly
+repo_info.txt
+venv/
