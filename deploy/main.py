@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 from transformers import AutoTokenizer
 
@@ -15,8 +15,7 @@ LOAD_ON_FLY = bool(os.environ.get("LOAD_ON_FLY", False))
 
 
 app = FastAPI()
-
-tokenizer = AutoTokenizer.from_pretrained('EleutherAI/pythia-1.4b-deduped')
+tokenizer = AutoTokenizer.from_pretrained('EleutherAI/pythia-1.4b-deduped')     
 
 class ChatInput(BaseModel):
     text: str
@@ -28,11 +27,11 @@ class ChatInput(BaseModel):
     repetition_penalty: float = 1.1
     seed: int = -1
 
-prompt_format = "Human:\n{human}" + tokenizer.eos_token + "\nAssistant:\n"
 
+prompt_format = "Human:\n{human}" + tokenizer.eos_token + "\nAssistant:\n"
 if not LOAD_ON_FLY:
     llm  = AutoModelForCausalLM.from_pretrained('pythia1b4-chat-oasst-dolly/ggml-model-q5_0.bin', model_type='gpt_neox', local_files_only=True, lib=LLM_LIB)
-    
+
 
 def chat(chat_inp: ChatInput):
     if not LOAD_ON_FLY:
@@ -55,8 +54,9 @@ def chat(chat_inp: ChatInput):
     else:
         return StreamingResponse(stream_resp(), media_type='text/event-stream')
 
+
 @app.get("/chat")
-async def chat_get(chat_inp: ChatInput=  Depends()):
+async def chat_get(chat_inp: ChatInput = Depends()):
     return chat(chat_inp)
 
 
