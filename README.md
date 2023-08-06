@@ -1,2 +1,5 @@
-# Note
-1. Some models are not stable enough to train in 4 bit (even in 8 bit)
+# Overview
+This repo provides an example of an end-to-end pipeline from training to serving small language models on consumer hardware.
+## [Train](train/README.MD)
+## [Build](build/README.MD)
+## [Deploy](deploy/README.MD)
