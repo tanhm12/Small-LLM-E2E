@@ -17,7 +17,6 @@ tokenizer.pad_token = "<|padding|>"
 model = AutoModelForCausalLM.from_pretrained("EleutherAI/pythia-1.4b-deduped", device_map='auto', torch_dtype=torch.float16, cache_dir="./models")
 
 
-
 from peft import get_peft_config, get_peft_model, LoraConfig, TaskType
 
 def get_lora_model(model):
