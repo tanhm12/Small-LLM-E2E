@@ -37,9 +37,9 @@ WORKDIR /src/app
 # Run your app
 COPY --from=builder /src/app/.venv ./.venv
 COPY . /src/app
+RUN cp .env.example .env
 RUN python -c "from main import *"
 CMD gunicorn main:app --workers ${NUM_WORKERS:-1} --worker-class uvicorn.workers.UvicornWorker \
-                 --backlog ${REQUEST_QUEUE_SIZE:-NUM_WORKERS} \
                 --bind 0.0.0.0:8000 --log-level debug --error-logfile log/server.log
 
                 # 

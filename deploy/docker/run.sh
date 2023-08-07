@@ -1,1 +1,1 @@
-COMPOSE_PROJECT_NAME=engbot docker compose up -d
+COMPOSE_PROJECT_NAME=pythia-engbot docker compose up -d
