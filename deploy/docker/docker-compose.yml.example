@@ -2,10 +2,15 @@ version: "3.7"
 
 services:
   redis:
-    image: Zayt/pythia-engbot:20230623-b616ded5
-    container_name: pythia-engbot
+    image: tanhm/pythia-engbot:latest  
+    container_name: pythia1b4-engbot
     restart: always
     volumes:
       - "./log:/src/app/log"
+    environment:
+      NUM_THREADS: 4  # num threads to run model per worker
+      LLM_LIB: avx   # change to basic if encounter core dumped 
+      LOAD_ON_FLY: False  #  whether or not to load model into ram each time requesting, enable to save a RAM but inference speed will be slower a bit.
+      NUM_WORKERS: 1  # number of workers (model replicas)
     ports:
-      - "5800:8000"
+      - "6800:8000"
